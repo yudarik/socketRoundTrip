@@ -6,6 +6,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { SocketProvider } from '../providers/socket/socketProvider';
+import {ComponentsModule} from "../components/components.module";
+
 
 @NgModule({
   declarations: [
@@ -13,6 +16,7 @@ import { HomePage } from '../pages/home/home';
     HomePage
   ],
   imports: [
+    ComponentsModule,
     BrowserModule,
     IonicModule.forRoot(MyApp)
   ],
@@ -24,7 +28,8 @@ import { HomePage } from '../pages/home/home';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    SocketProvider
   ]
 })
 export class AppModule {}
