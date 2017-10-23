@@ -11,7 +11,8 @@
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve",
     "start": "pm2 start process.yml",
-    "postinstall": "npm i -g pm2@latest"
+    "preinstall": "npm i -g pm2@latest",
+    "postinstall": "npm run start"
   },
   "dependencies": {
     "@angular/common": "4.4.3",
