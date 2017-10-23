@@ -16,22 +16,10 @@ server.listen(3000, () => {
 });
 
 
-function doRoundTrip(client) {
-
-  let interval = setInterval(() => {
-    process.nextTick(() => {
-      //console.log('sending next message');
-      client.emit('message', {text: 'hello world', timestamp: Date.now()});
-
-    });
-  }, 300)
-
-}
-
-listenToIncomingMessages = (client) => {
+function listenToIncomingMessages(client) {
   let serverRequestTS;
 
-  let messageCallBack = (messageBody) => {
+  let messageCallback = (messageBody) => {
     serverRequestTS = Date.now();
 
     process.nextTick(sendMessage);
@@ -46,6 +34,5 @@ listenToIncomingMessages = (client) => {
     });
   };
 
-  client.on('message', messageCallBack);
-
-};
+  client.on('message', messageCallback);
+}
