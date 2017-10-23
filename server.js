@@ -1,6 +1,18 @@
-let server = require('http').createServer();
-let io = require('socket.io')(server);
 let process = require('process');
+let express = require('express');
+let app = express();
+let server = require('http').Server(app);
+let io = require('socket.io')(server);
+
+app.set('views', __dirname + '/www');
+app.engine('html', require('ejs').renderFile);
+app.use(express.static(__dirname + '/www'));
+
+app.get('/', function(req, res) {
+  res.render('index.html');
+});
+
+server.listen(8080);
 
 io.on('connection', function(client){
 
@@ -10,11 +22,6 @@ io.on('connection', function(client){
 
   listenToIncomingMessages(client);
 });
-
-server.listen(3000, () => {
-  console.log('Server started on port 3000');
-});
-
 
 function listenToIncomingMessages(client) {
   let serverRequestTS;
