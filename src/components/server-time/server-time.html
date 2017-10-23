@@ -1,0 +1,26 @@
+<ion-content>
+  <ion-item-group>
+    <ion-item class="text-center">
+      <ion-col col-6>Round Trip Delay:</ion-col>&nbsp;<ion-badge>{{roundTripDelay}} ms</ion-badge>
+    </ion-item>
+    <ion-item class="text-center">
+      <ion-col col-6>Client-Server time offset:</ion-col>&nbsp;<ion-badge>{{timeOffset}} ms</ion-badge>
+    </ion-item>
+
+    <ion-item>
+      <ion-card>
+        <ion-card-content>
+          <div class="box gauge--3">
+            <div class="mask">
+              <div class="semi-circle"></div>
+              <div class="semi-circle--mask" [ngStyle]="{'-webkit-transform': getRotate(roundTripDelay), 'transform': getRotate(roundTripDelay)}"></div>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+    </ion-item>
+
+  </ion-item-group>
+
+</ion-content>>
