@@ -12,8 +12,9 @@ app.get('/', function(req, res) {
   res.render('index.html');
 });
 
-server.listen(process.env.PORT || 8080);
-
+app.listen(process.env.PORT || 8080, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
 io.on('connection', function(client){
 
   console.log('Socket connection is now open');
