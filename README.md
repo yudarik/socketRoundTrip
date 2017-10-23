@@ -10,7 +10,7 @@ This is a starter template for [Ionic](http://ionicframework.com/docs/) projects
 ### Install dependencies:
 ```bash
 $ sudo npm install -g ionic cordova
-$ gil clone https://github.com/yudarik/socketRoundTrip
+$ gil clone https://github.com/yudarik/socketRoundTrip.git
 $ cd socketRoundTrip && npm install
 ```
 
