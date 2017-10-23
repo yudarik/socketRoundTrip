@@ -56,5 +56,9 @@
     "platforms": [
       "android"
     ]
+  },
+  "engines": {
+    "node": "6.x.x",
+    "npm": "3.x.x"
   }
 }
