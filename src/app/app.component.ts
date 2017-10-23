@@ -35,6 +35,7 @@ export class MyApp {
   }
 
   presentLoading() {
+    this.error = null;
     this.loader = this.loadingCtrl.create({
       content: "Please wait...",
       duration: 30000
