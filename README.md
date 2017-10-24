@@ -22,3 +22,6 @@ $ node server (as separate process)
 ```
 ### download and install android app to run directly from your phone:
 https://github.com/yudarik/socketRoundTrip/blob/master/roundTrip-android-app.apk
+
+### Live Demo
+https://socket-round-trip.herokuapp.com/
