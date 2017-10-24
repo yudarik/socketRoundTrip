@@ -133,6 +133,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 
 
 
@@ -141,9 +144,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var MyApp = (function () {
-    function MyApp(fb, socketProvider, loadingCtrl, platform, statusBar, splashScreen) {
+    function MyApp(fb, socketProvider, _window, loadingCtrl, platform, statusBar, splashScreen) {
         this.fb = fb;
         this.socketProvider = socketProvider;
+        this._window = _window;
         this.loadingCtrl = loadingCtrl;
         this.rootPage = __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */];
         platform.ready().then(function () {
@@ -155,7 +159,7 @@ var MyApp = (function () {
     }
     MyApp.prototype.ngOnInit = function () {
         this.serverAddressForm = this.fb.group({
-            address: "http://localhost:3000"
+            address: this._window.location || "http://127.0.0.1:8080"
         });
         this.connected = false;
     };
@@ -185,7 +189,9 @@ var MyApp = (function () {
 MyApp = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"/home/arik/WebstormProjects/socketRoundTrip/src/app/app.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Round Trip Calculator</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-grid *ngIf="!connected">\n  <ion-row>\n    <ion-col col-12>\n      <form [formGroup]="serverAddressForm" novalidate>\n        <ion-list>\n\n          <ion-item>\n            <ion-label fixed>Address</ion-label>\n            <ion-input type="text" formControlName="address"></ion-input>\n            <ion-label *ngIf="error">{{error}}</ion-label>\n          </ion-item>\n        </ion-list>\n\n        <button ion-button full (click)="connect2Server()">Connect</button>\n\n      </form>\n    </ion-col>\n  </ion-row>\n</ion-grid>\n<server-time *ngIf="connected"></server-time>\n'/*ion-inline-end:"/home/arik/WebstormProjects/socketRoundTrip/src/app/app.html"*/
     }),
+    __param(2, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Inject */])(Window)),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_6__providers_socket_socketProvider__["a" /* SocketProvider */],
+        Window,
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
 ], MyApp);
 
@@ -298,6 +304,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__["a" /* StatusBar */],
             __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
             { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["v" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicErrorHandler */] },
+            { provide: Window, useValue: window },
             __WEBPACK_IMPORTED_MODULE_7__providers_socket_socketProvider__["a" /* SocketProvider */]
         ]
     })

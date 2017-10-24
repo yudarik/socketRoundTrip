@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Platform, LoadingController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -18,6 +18,7 @@ export class MyApp {
   error: string;
 
   constructor(private fb: FormBuilder, private socketProvider: SocketProvider,
+              @Inject(Window) private _window: Window,
               public loadingCtrl: LoadingController, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -29,7 +30,7 @@ export class MyApp {
 
   ngOnInit() {
     this.serverAddressForm = this.fb.group({
-      address: `http://localhost:3000`
+      address: this._window.location || `http://127.0.0.1:8080`
     });
     this.connected = false;
   }

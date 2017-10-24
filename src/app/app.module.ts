@@ -29,6 +29,7 @@ import {ComponentsModule} from "../components/components.module";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {provide: Window, useValue: window},
     SocketProvider
   ]
 })
