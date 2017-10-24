@@ -3,18 +3,17 @@ let express = require('express');
 let app = express();
 let server = require('http').Server(app);
 let io = require('socket.io')(server);
+let port = process.env.PORT || 8080;
 
-app.set('views', __dirname + '/www');
-app.engine('html', require('ejs').renderFile);
+server.listen(port, () => {
+  console.log(`Listening on port ${port}, ready for socket connection`);
+});
+
 app.use(express.static(__dirname + '/www'));
-
-app.get('/', function(req, res) {
-  res.render('index.html');
+app.get('/', function (req, res) {
+  res.sendFile(__dirname + `/index.html`);
 });
 
-app.listen(process.env.PORT || 8080, function(){
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-});
 io.on('connection', function(client){
 
   console.log('Socket connection is now open');
