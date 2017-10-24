@@ -25,7 +25,9 @@ export class SocketProvider {
   }
 
   connect(url) {
-    this.socket = io(url);
+
+    let connectUrl = url.replace(/\/$/,'');
+    this.socket = io(connectUrl);
 
     return new Promise((resolve) => {
       this.socket.on('connect', resolve);

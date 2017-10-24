@@ -30,7 +30,7 @@ export class MyApp {
 
   ngOnInit() {
     this.serverAddressForm = this.fb.group({
-      address: this._window.location || `http://127.0.0.1:8080`
+      address: this._window.location.toString().replace(/\/$/,'') || `http://127.0.0.1:8080`
     });
     this.connected = false;
   }

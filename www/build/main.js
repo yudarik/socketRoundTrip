@@ -37,7 +37,8 @@ var SocketProvider = (function () {
     }
     SocketProvider.prototype.connect = function (url) {
         var _this = this;
-        this.socket = __WEBPACK_IMPORTED_MODULE_3_socket_io_client__(url);
+        var connectUrl = url.replace(/\/$/, '');
+        this.socket = __WEBPACK_IMPORTED_MODULE_3_socket_io_client__(connectUrl);
         return new Promise(function (resolve) {
             _this.socket.on('connect', resolve);
         });
@@ -159,7 +160,7 @@ var MyApp = (function () {
     }
     MyApp.prototype.ngOnInit = function () {
         this.serverAddressForm = this.fb.group({
-            address: this._window.location || "http://127.0.0.1:8080"
+            address: this._window.location.toString().replace(/\/$/, '') || "http://127.0.0.1:8080"
         });
         this.connected = false;
     };
