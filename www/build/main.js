@@ -160,7 +160,7 @@ var MyApp = (function () {
     }
     MyApp.prototype.ngOnInit = function () {
         this.serverAddressForm = this.fb.group({
-            address: this._window.location.toString().replace(/\/$/, '') || "http://127.0.0.1:8080"
+            address: this._window.location.toString().replace(/\/$/, '') || "https://socket-round-trip.herokuapp.com"
         });
         this.connected = false;
     };
